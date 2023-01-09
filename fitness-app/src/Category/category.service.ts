@@ -12,5 +12,12 @@ export class CategoryService {
         return this.categoryRepository.save(createCategory);
     }
 
-    
+    //Recuperer toutes les categories de recettes
+    getAllCategories(): Promise<Category[]> {
+        return this.categoryRepository.find();
+    }
+    //Supprimer une categorie de recette
+    removeCategory(catId: number) {
+        return this.categoryRepository.delete(catId);
+    }
 }

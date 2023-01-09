@@ -34,6 +34,10 @@ export class RecetteService {
     }
     return recette;
   }
+  //Supprimer une recette
+  removeRecette(recetteId: number) {
+    return this.recettesRepository.delete(recetteId);
+  }
 
   getAllFavoris() {
     return this.recettesRepository.find({ relations: ['favoriteRecipes'] });
@@ -59,6 +63,17 @@ export class RecetteService {
   //RETROUVER RECETTES AVEC LEURS CATEGORIES INCLUSES
   getAllCategoriesRecettes() {
     return this.recettesRepository.find({ relations: ['category','etapes'] });
+  }
+
+  //RETROUVER RECETTES d'une categorie
+  getOneCategoriesRecettes(catgId: number) {
+    return this.recettesRepository.find({relations: ['category','etapes'], 
+    where:{
+      category :
+        {
+          id : catgId
+        }
+    } });
   }
 
 }

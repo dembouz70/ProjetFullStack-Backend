@@ -1,4 +1,5 @@
 export class CreateCategoryDto {
     id : number
-    titre : string
+    titre_Cat : string
+    catdescription : string
 }

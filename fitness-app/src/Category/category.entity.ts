@@ -9,6 +9,9 @@ export class Category {
     @Column()
     titre_Cat : string
 
+    @Column()
+    catdescription : string
+
     @OneToMany(() => Recette, (recette) => recette.id)
     recettes: Recette[]
 

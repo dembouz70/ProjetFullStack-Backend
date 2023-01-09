@@ -19,6 +19,12 @@ export class RecetteController {
         return this.recetteService.getAllCategoriesRecettes()
     }
 
+    //Recuperer des recettes d'une categorie
+    @Get('category/:id')
+    getOneRecettesCategories(@Param("id") id: number) {
+        return this.recetteService.getOneCategoriesRecettes(Number(id))
+    }
+
     @UseGuards(AuthGuard('local'))
     @Post('auth/login')
     async login(@Req() req) {
@@ -27,13 +33,13 @@ export class RecetteController {
 
     //Recuperer une recette
     @Get('/:id')
-    getOneEtudiant(@Param("id") Etudiantid: number): Promise<Recette[]> {
+    getOneRecette(@Param("id") Etudiantid: number): Promise<Recette[]> {
         return this.recetteService.getOneRecette(Number(Etudiantid));
     }
-
+    //Supprimer une recette
     @Delete('/:id')
-    remove(@Param('id') id: string) {
-        return `This action removes a #${id} cat`;
+    remove(@Param('id') id: number) {
+        return this.recetteService.removeRecette(Number(id))
     }
 
     @Post('create/:id')
